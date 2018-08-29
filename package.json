@@ -1,0 +1,25 @@
+{
+  "name": "parcel-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mobx": "^5.1.0",
+    "mobx-react": "^5.2.5",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  },
+  "devDependencies": {
+    "babel-preset-mobx": "^1.0.3",
+    "babel-preset-react": "^6.24.1",
+    "parcel-bundler": "^1.9.7"
+  }
+}
