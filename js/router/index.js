@@ -4,7 +4,7 @@ import React from 'react'
 import stores from './stores'
 import { Provider } from 'mobx-react' // 供应stores
 
-// import Box from './box'
+import Box from './box'
 class Index extends React.Component {
   constructor (props) {
     super(props)
@@ -17,9 +17,8 @@ class Index extends React.Component {
   render () {
     return (
       <Provider {...stores}>
-        <div>
-          123
-        </div></Provider>
+        <Box/>
+      </Provider>
     )
 
   }

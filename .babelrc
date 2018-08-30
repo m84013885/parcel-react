@@ -1,4 +1,4 @@
 {
-    "presets": ["react","mobx"],
-    "plugins": ["transform-class-properties","transform-decorators-legacy"]
+    "presets": ["env","stage-1","react","mobx"],
+    "plugins": ["transform-decorators-legacy","transform-class-properties"]
 }

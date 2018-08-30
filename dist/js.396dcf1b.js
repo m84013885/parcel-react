@@ -23677,167 +23677,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _desc, _value, _class;
-
 var _mobx = require('mobx');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-  var desc = {};
-  Object['ke' + 'ys'](descriptor).forEach(function (key) {
-    desc[key] = descriptor[key];
-  });
-  desc.enumerable = !!desc.enumerable;
-  desc.configurable = !!desc.configurable;
-
-  if ('value' in desc || desc.initializer) {
-    desc.writable = true;
-  }
-
-  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-    return decorator(target, property, desc) || desc;
-  }, desc);
-
-  if (context && desc.initializer !== void 0) {
-    desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-    desc.initializer = undefined;
-  }
-
-  if (desc.initializer === void 0) {
-    Object['define' + 'Property'](target, property, desc);
-    desc = null;
-  }
-
-  return desc;
-}
-
 // 请求
-var Store = (_class = function () {
-  function Store() {
-    _classCallCheck(this, Store);
-  }
-
-  _createClass(Store, [{
-    key: 'buttonLeftChange',
-    value: function buttonLeftChange(number) {
-      this.buttonLeft = number;
-    }
-  }, {
-    key: 'buttonOpacityChange',
-
-
-    // 通过移动透明度变化
-    value: function buttonOpacityChange(number) {
-      if (number > 57 && number < 77) {
-        this.imgOpacity = (82 - number) / 20;
-      } else if (number < 57 && number > 37) {
-        this.imgOpacity = (number - 37) / 20;
-      } else if (number >= 56 && number <= 58) {
-        this.imgOpacity = 1;
-      } else {
-        this.imgOpacity = 0;
-      }
-    }
-  }, {
-    key: 'degChange',
-
-
-    // 震动
-    value: function degChange() {
-      var _this = this;
-
-      var _loop = function _loop(i) {
-        var that = _this;
-        setTimeout(function () {
-          that.deg = 8;
-          setTimeout(function () {
-            that.deg = 0;
-          }, 100);
-          setTimeout(function () {
-            that.deg = -8;
-          }, 200);
-          setTimeout(function () {
-            that.deg = 0;
-          }, 300);
-        }, i * 350);
-      };
-
-      for (var i = 1; i < 4; i++) {
-        _loop(i);
-      }
-    }
-  }, {
-    key: 'scrollDomChange',
-    value: function scrollDomChange(dom) {
-      this.scrollDom = dom;
-    }
-  }, {
-    key: 'boxIndexChange',
-    value: function boxIndexChange(number) {
-      this.boxIndex = number;
-    }
-  }, {
-    key: 'startMusicChange',
-    value: function startMusicChange(number) {
-      this.startMusic = number;
-    }
-  }, {
-    key: 'musicOpenChange',
-    value: function musicOpenChange(number) {
-      this.musicOpen = number;
-    }
-  }, {
-    key: 'showBox',
-    value: function showBox() {
-      var _this2 = this;
-
-      setTimeout(function () {
-        _this2.showHideBox = true;
-      }, 50);
-      this.showHideWrap = true;
-    }
-  }, {
-    key: 'hideBox',
-    value: function hideBox() {
-      var _this3 = this;
-
-      setTimeout(function () {
-        _this3.showHideWrap = false;
-      }, 200);
-      this.showHideBox = false;
-    }
-  }, {
-    key: 'showTips',
-    value: function showTips(obj) {
-      this.tips = obj;
-    }
-  }, {
-    key: 'hideTips',
-    value: function hideTips() {
-      this.tips = null;
-    }
-  }, {
-    key: 'showLoad',
-    value: function showLoad(bool) {
-      this.load = bool;
-    }
-  }, {
-    key: 'autoTop',
-    value: function autoTop(height) {
-      this.swiperTop = height;
-    }
-  }, {
-    key: 'resetDom',
-    value: function resetDom(length) {
-      this.domNode = length;
-    }
-  }]);
-
-  return Store;
-}(), (_applyDecoratedDescriptor(_class.prototype, 'buttonLeftChange', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'buttonLeftChange'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'buttonOpacityChange', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'buttonOpacityChange'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'degChange', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'degChange'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'scrollDomChange', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'scrollDomChange'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'boxIndexChange', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'boxIndexChange'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'startMusicChange', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'startMusicChange'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'musicOpenChange', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'musicOpenChange'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'showBox', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'showBox'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'hideBox', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'hideBox'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'showTips', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'showTips'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'hideTips', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'hideTips'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'showLoad', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'showLoad'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'autoTop', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'autoTop'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'resetDom', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'resetDom'), _class.prototype)), _class);
+var Store = function Store() {
+  _classCallCheck(this, Store);
+};
 
 var store = new Store();
 
@@ -25067,7 +24914,110 @@ exports.trackComponents = trackComponents;
 exports.useStaticRendering = useStaticRendering;
 exports.Provider = Provider;
 exports.inject = inject;
-},{"mobx":"node_modules/mobx/lib/mobx.module.js","react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js"}],"js/router/index.js":[function(require,module,exports) {
+},{"mobx":"node_modules/mobx/lib/mobx.module.js","react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js"}],"js/router/one/index.js":[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _dec, _class;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _mobxReact = require('mobx-react');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var One = (_dec = (0, _mobxReact.inject)('store'), _dec(_class = (0, _mobxReact.observer)(_class = function (_React$Component) {
+  _inherits(One, _React$Component);
+
+  function One(props) {
+    _classCallCheck(this, One);
+
+    var _this = _possibleConstructorReturn(this, (One.__proto__ || Object.getPrototypeOf(One)).call(this, props));
+
+    _this.state = {};
+    return _this;
+  }
+
+  _createClass(One, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement('div', null);
+    }
+  }]);
+
+  return One;
+}(_react2.default.Component)) || _class) || _class);
+exports.default = One;
+},{"react":"node_modules/react/index.js","mobx-react":"node_modules/mobx-react/index.module.js"}],"js/router/box/index.js":[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _dec, _class;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _mobxReact = require('mobx-react');
+
+var _one = require('./../one');
+
+var _one2 = _interopRequireDefault(_one);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Box = (_dec = (0, _mobxReact.inject)('store'), _dec(_class = (0, _mobxReact.observer)(_class = function (_React$Component) {
+  _inherits(Box, _React$Component);
+
+  function Box(props) {
+    _classCallCheck(this, Box);
+
+    var _this = _possibleConstructorReturn(this, (Box.__proto__ || Object.getPrototypeOf(Box)).call(this, props));
+
+    _this.state = {};
+    return _this;
+  }
+
+  _createClass(Box, [{
+    key: 'render',
+    value: function render() {
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(_one2.default, null)
+      );
+    }
+  }]);
+
+  return Box;
+}(_react2.default.Component)) || _class) || _class);
+exports.default = Box;
+},{"react":"node_modules/react/index.js","mobx-react":"node_modules/mobx-react/index.module.js","./../one":"js/router/one/index.js"}],"js/router/index.js":[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25086,6 +25036,10 @@ var _stores2 = _interopRequireDefault(_stores);
 
 var _mobxReact = require('mobx-react');
 
+var _box = require('./box');
+
+var _box2 = _interopRequireDefault(_box);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25094,11 +25048,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 // import style from './css.css'
-
-
 // 供应stores
 
-// import Box from './box'
 var Index = function (_React$Component) {
   _inherits(Index, _React$Component);
 
@@ -25118,11 +25069,7 @@ var Index = function (_React$Component) {
       return _react2.default.createElement(
         _mobxReact.Provider,
         _stores2.default,
-        _react2.default.createElement(
-          'div',
-          null,
-          '123'
-        )
+        _react2.default.createElement(_box2.default, null)
       );
     }
   }]);
@@ -25131,7 +25078,7 @@ var Index = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Index;
-},{"react":"node_modules/react/index.js","./stores":"js/router/stores/index.js","mobx-react":"node_modules/mobx-react/index.module.js"}],"js/index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./stores":"js/router/stores/index.js","mobx-react":"node_modules/mobx-react/index.module.js","./box":"js/router/box/index.js"}],"js/index.js":[function(require,module,exports) {
 'use strict';
 
 var _react = require("react");
@@ -25178,7 +25125,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '56280' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '60823' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
