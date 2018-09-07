@@ -1,6 +1,7 @@
 'use strict'
 import React from 'react'
 import { observer, inject } from 'mobx-react'
+import style from './css'
 import One from './../one'
 
 @inject('store') @observer class Box extends React.Component {
@@ -13,9 +14,7 @@ import One from './../one'
   render () {
 
     return (
-        <div>
-            <One/>
-        </div>
+        <div style={style.button}></div>
     )
   }
 }
