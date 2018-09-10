@@ -2,8 +2,9 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
 import style from './css'
+import styleAdd from '../../config/styleadd'
 import One from './../one'
-
+styleAdd(style,'box')
 @inject('store') @observer class Box extends React.Component {
   constructor (props) {
     super(props)
@@ -14,7 +15,7 @@ import One from './../one'
   render () {
 
     return (
-        <div style={style.button}></div>
+        <div className="box-button"></div>
     )
   }
 }

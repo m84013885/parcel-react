@@ -1,9 +1,9 @@
 
 var style = {
     button:{
-        width: '100%',
-        lineHeight: '1rem',
-        padding: '10px'
+        'width': '100%',
+        'line-height': '1rem',
+        'padding': '10px'
     }
 }
 

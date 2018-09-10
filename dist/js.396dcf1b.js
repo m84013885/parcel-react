@@ -19748,7 +19748,60 @@ if ('development' === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"node_modules/process/browser.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"js/config/resize.js":[function(require,module,exports) {
+(function flexible(window, document) {
+  var docEl = document.documentElement;
+  var dpr = window.devicePixelRatio || 1;
+
+  // adjust body font size
+  function setBodyFontSize() {
+    if (document.body) {
+      document.body.style.fontSize = 12 * dpr + 'px';
+    } else {
+      document.addEventListener('DOMContentLoaded', setBodyFontSize);
+    }
+  }
+  setBodyFontSize();
+
+  // set 1rem = viewWidth / 10
+  function setRemUnit() {
+    var rem = docEl.clientWidth / 10;
+    docEl.style.fontSize = rem + 'px';
+  }
+
+  setRemUnit();
+
+  // reset rem unit on page resize
+  window.addEventListener('resize', setRemUnit);
+  window.addEventListener('pageshow', function (e) {
+    if (e.persisted) {
+      setRemUnit();
+    }
+  });
+
+  // detect 0.5px supports
+  if (dpr >= 2) {
+    var fakeBody = document.createElement('body');
+    var testElement = document.createElement('div');
+    testElement.style.border = '.5px solid transparent';
+    fakeBody.appendChild(testElement);
+    docEl.appendChild(fakeBody);
+    if (testElement.offsetHeight === 1) {
+      docEl.classList.add('hairlines');
+    }
+    docEl.removeChild(fakeBody);
+  }
+})(window, document);
+},{}],"js/config/cssreset.js":[function(require,module,exports) {
+(function cssreset() {
+
+    var style = document.createElement('style');
+    var head = document.getElementsByTagName('head')[0];
+    head.append(style);
+    style = document.getElementsByTagName('style')[0];
+    style.append('\n\n* {\n    margin: 0;\n    padding: 0;\n    border: 0;\n    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", "STHeitiSC-Light", "Microsoft YaHei", "\u5FAE\u8F6F\u96C5\u9ED1", Arial, sans-serif;\n}\n\nbody,\nhtml {\n    idth: 100%;\n    height: 100%;\n}\n\nli {\n    list-style: none\n}\n\n.hide {\n    display: none\n}\n\n:global #main {\n    width: 100%;\n    height: 100%;\n    position: relative;\n}\n  \n');
+})();
+},{}],"node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {};
@@ -24914,7 +24967,87 @@ exports.trackComponents = trackComponents;
 exports.useStaticRendering = useStaticRendering;
 exports.Provider = Provider;
 exports.inject = inject;
-},{"mobx":"node_modules/mobx/lib/mobx.module.js","react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js"}],"js/router/one/index.js":[function(require,module,exports) {
+},{"mobx":"node_modules/mobx/lib/mobx.module.js","react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js"}],"js/router/box/css.js":[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var style = {
+    button: {
+        'width': '100%',
+        'line-height': '1rem',
+        'padding': '10px'
+    }
+};
+
+exports.default = style;
+},{}],"js/config/styleadd.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+function styleadd(style, name) {
+    var stylehtml = document.getElementsByTagName('style')[0];
+    var styleadd = "";
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+        for (var _iterator = Object.keys(style)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var key = _step.value;
+
+            var a = "{";
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+                for (var _iterator2 = Object.keys(style[key])[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var value = _step2.value;
+
+                    a += value + ':' + style[key][value] + ';';
+                }
+            } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                        _iterator2.return();
+                    }
+                } finally {
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
+                    }
+                }
+            }
+
+            styleadd = '.' + name + '-' + key + '' + a + '}';
+        }
+    } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+    } finally {
+        try {
+            if (!_iteratorNormalCompletion && _iterator.return) {
+                _iterator.return();
+            }
+        } finally {
+            if (_didIteratorError) {
+                throw _iteratorError;
+            }
+        }
+    }
+
+    stylehtml.append(styleadd);
+}
+
+exports.default = styleadd;
+},{}],"js/router/one/index.js":[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24978,6 +25111,14 @@ var _react2 = _interopRequireDefault(_react);
 
 var _mobxReact = require('mobx-react');
 
+var _css = require('./css');
+
+var _css2 = _interopRequireDefault(_css);
+
+var _styleadd = require('../../config/styleadd');
+
+var _styleadd2 = _interopRequireDefault(_styleadd);
+
 var _one = require('./../one');
 
 var _one2 = _interopRequireDefault(_one);
@@ -24990,6 +25131,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+(0, _styleadd2.default)(_css2.default, 'box');
 var Box = (_dec = (0, _mobxReact.inject)('store'), _dec(_class = (0, _mobxReact.observer)(_class = function (_React$Component) {
   _inherits(Box, _React$Component);
 
@@ -25006,18 +25148,14 @@ var Box = (_dec = (0, _mobxReact.inject)('store'), _dec(_class = (0, _mobxReact.
     key: 'render',
     value: function render() {
 
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(_one2.default, null)
-      );
+      return _react2.default.createElement('div', { className: 'box-button' });
     }
   }]);
 
   return Box;
 }(_react2.default.Component)) || _class) || _class);
 exports.default = Box;
-},{"react":"node_modules/react/index.js","mobx-react":"node_modules/mobx-react/index.module.js","./../one":"js/router/one/index.js"}],"js/router/index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","mobx-react":"node_modules/mobx-react/index.module.js","./css":"js/router/box/css.js","../../config/styleadd":"js/config/styleadd.js","./../one":"js/router/one/index.js"}],"js/router/index.js":[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25047,7 +25185,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-// import style from './css.css'
+// import style from './css'
 // 供应stores
 
 var Index = function (_React$Component) {
@@ -25089,6 +25227,10 @@ var _reactDom = require("react-dom");
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+require("./config/resize");
+
+require("./config/cssreset");
+
 var _index = require("./router/index");
 
 var _index2 = _interopRequireDefault(_index);
@@ -25096,7 +25238,7 @@ var _index2 = _interopRequireDefault(_index);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _reactDom2.default.render(_react2.default.createElement(_index2.default, null), document.getElementById("root"));
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./router/index":"js/router/index.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./config/resize":"js/config/resize.js","./config/cssreset":"js/config/cssreset.js","./router/index":"js/router/index.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -25125,7 +25267,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '60823' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '64320' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
