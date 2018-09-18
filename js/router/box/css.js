@@ -1,10 +1,9 @@
+import styled,{ css } from 'react-emotion'
 
 var style = {
-    button:{
-        'width': '100%',
-        'line-height': '1rem',
-        'padding': '10px'
-    }
+    button:css`
+        color: #333;
+    `
 }
 
 export default style
