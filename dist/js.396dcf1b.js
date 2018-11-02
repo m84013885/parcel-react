@@ -27324,7 +27324,7 @@ var Box = (_dec = (0, _mobxReact.inject)('store'), _dec(_class = (0, _mobxReact.
   _createClass(Box, [{
     key: 'render',
     value: function render() {
-
+      console.log(this.props);
       return _react2.default.createElement(
         Container,
         null,
@@ -27453,7 +27453,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '65166' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51611' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

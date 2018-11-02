@@ -17,7 +17,7 @@ import One from './../one'
     }
   }
   render () {
-
+    console.log(this.props)
     return (
       <Container>123<span className={style.button}>123</span></Container>
     )
