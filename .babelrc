@@ -1,4 +1,6 @@
 {
-    "presets": ["env","stage-1","react","mobx"],
-    "plugins": ["transform-runtime","transform-decorators-legacy","transform-class-properties"]
-}
+    "plugins": [
+      ["@babel/plugin-proposal-decorators", { "legacy": true }],
+      ["@babel/plugin-proposal-class-properties", {"loose": true}]
+    ]
+  }
