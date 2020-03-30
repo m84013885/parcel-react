@@ -1,4 +1,4 @@
-import styled,{ css } from 'react-emotion'
+import { css } from '@emotion/core'
 
 var style = {
     button:css`

@@ -3,10 +3,7 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 import style from './css'
 
-import styled,{ css } from 'react-emotion'
-const Container = styled('div')`
-  background-color:#ddd;
-`
+import { css } from '@emotion/core'
 
 import One from './../one'
 @inject('store') @observer class Box extends React.Component {
@@ -19,7 +16,7 @@ import One from './../one'
   render () {
     console.log(this.props)
     return (
-      <Container>123<span className={style.button}>123</span></Container>
+      <div className={style.button.name} style={{color:'#333'}}>123</div>
     )
   }
 }
